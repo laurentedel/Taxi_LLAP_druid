@@ -37,7 +37,7 @@ do
         echo "compressing yellow_tripdata_$YEAR-$MONTH.csv.bz2"
         bzip2 --fast yellow_tripdata_$YEAR-$MONTH.csv
       fi
-      echo "LOAD DATA INPATH '$HDFS_DIR/data/yellow_tripdata_$YEAR-$MONTH.csv.bz2' INTO TABLE $DATABASE.trips_raw ;" >> ddl/load_data_text.sql
+      echo "LOAD DATA INPATH '$HDFS_DIR/data/yellow_tripdata_$YEAR-$MONTH.csv.bz2' INTO TABLE $DATABASE.trips_raw ;" >> ../ddl/load_data_text.sql
 
     echo "yellow_tripdata_$YEAR-$MONTH.csv : OK"
     sleep 1
