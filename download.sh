@@ -1,7 +1,7 @@
 #!/bin/bash
-set -e -x;
+set -e;
 
-export Data_DIR="$(pwd)/data"
+export DATA_DIR="$(pwd)/data"
 export HDFS_DIR="/tmp/taxi_llap"
 
 export START="2012"
@@ -19,7 +19,7 @@ export OVERWRITE_TABLE=true
 
 #### Setup ######
 #create data dir
-mkdir -p $Data_DIR
+mkdir -p $DATA_DIR
 
 #create sql load file 
 rm -f ddl/load_data_text.sql
@@ -27,7 +27,7 @@ touch ddl/load_data_text.sql
 
 
 ######  Download ######	
-#cd $Data_DIR
+#cd $DATA_DIR
 
 for YEAR in $( seq $START $END )
 do
@@ -67,8 +67,8 @@ if $(hadoop fs -test -d $HDFS_DIR ) ;
 fi
 
 hdfs dfs -mkdir -p $HDFS_DIR/data
-#hdfs dfs -copyFromLocal -f $Data_DIR/*.bz2 $HDFS_DIR/
-hdfs dfs -copyFromLocal -f $Data_DIR/*.csv.bz2 $HDFS_DIR/data
+#hdfs dfs -copyFromLocal -f $DATA_DIR/*.bz2 $HDFS_DIR/
+hdfs dfs -copyFromLocal -f $DATA_DIR/*.csv.bz2 $HDFS_DIR/data
 sudo -u hdfs hdfs dfs -chmod -R 777 $HDFS_DIR
 sudo -u hdfs hdfs dfs -chown -R hive:hdfs $HDFS_DIR
 
