@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e -x;
+set -e;
 export DATABASE="NY_taxi"
 export HIVE_PROTOCOL="http"  # binary | http
 export LLAP=true
@@ -16,16 +16,14 @@ sed -i "1 i\use $DATABASE;" ddl/optimize.sql
 #build jdbc URL 
 if [ $HIVE_PROTOCOL == "http" ]
 then 
-	export TRANSPORT_MODE=";transportMode=http;httpPath=cliservice"
-	if $LLAP; then export PORT=10501; else export PORT=10001; fi
-
+  export TRANSPORT_MODE=";transportMode=http;httpPath=cliservice"
+  if $LLAP; then export PORT=10501; else export PORT=10001; fi
 else 
-	export TRANSPORT_MODE=""
-	if $LLAP; then export PORT=10500; fi
+  export TRANSPORT_MODE=""
+  if $LLAP; then export PORT=10500; fi
 fi 
 
 export JDBC_URL="jdbc:hive2://$HIVE_HOST:$PORT/$TRANSPORT_MODE"
-
 
 #execute the scripts
 echo "to ORC"
