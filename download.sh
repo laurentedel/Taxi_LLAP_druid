@@ -131,3 +131,8 @@ beeline -u $JDBC_URL -n hive -f ddl/optimize.sql
 
 echo "to Druid"
 beeline -u $JDBC_URL -n hive -f ddl/to_druid.sql
+
+# Tableau dashboards
+sed -i '' "s/<HS2PORT>/$PORT/" Tableau/*.twb
+sed -i '' "s/<HS2DATABASE>/$DATABASE/" Tableau/*.twb
+sed -i '' "s/<HS2HOST>/$HIVE_HOST/" Tableau/*.twb
