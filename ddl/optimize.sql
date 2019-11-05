@@ -1,3 +1,3 @@
-use NY_taxi;
+use ny_taxi;
 
 ANALYZE TABLE trips COMPUTE STATISTICS FOR COLUMNS;
