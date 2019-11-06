@@ -105,10 +105,12 @@ echo "OK"
 
 
 #Define the database
-tail -n+2 ddl/taxi_to_orc.sql > ddl/tmp_file_orc ; mv ddl/tmp_file_orc ddl/taxi_to_orc.sql
+tail -n+2 ddl/taxi_to_orc.sql > ddl/tmp_file_orc
+mv ddl/tmp_file_orc ddl/taxi_to_orc.sql
 sed -i "1 i\use $DATABASE;" ddl/taxi_to_orc.sql
 
-tail -n+2 ddl/optimize.sql > ddl/tmp_file_opt ; mv ddl/tmp_file_opt ddl/optimize.sql
+tail -n+2 ddl/optimize.sql > ddl/tmp_file_opt
+mv ddl/tmp_file_opt ddl/optimize.sql
 sed -i "1 i\use $DATABASE;" ddl/optimize.sql
 
 # First modify Hive whitelist to be able to fill some parameters
