@@ -76,7 +76,7 @@ select
   date_format(cast(npickup_datetime as timestamp),'yyyyMM') as yearmonth
 from trips_raw
 --where year(cast(npickup_datetime as timestamp)) = 2012 and month(cast(npickup_datetime as timestamp)) in (1,2)
-WHERE pickup_longitude != 0.0 AND pickup_latitude = !0.0
+WHERE pickup_longitude != 0.0 AND pickup_latitude != 0.0
 DISTRIBUTE BY date_format(cast(npickup_datetime as timestamp),'yyyyMMw') SORT BY npickup_datetime ;
 
 
